@@ -9,6 +9,8 @@ exports.addOffer = async (req, res) => {
     coupon_description,
     coupon_image,
     coupon_end,
+    url,
+    bank_name,
     userId,
   } = req.body;
 
@@ -22,6 +24,8 @@ exports.addOffer = async (req, res) => {
         coupon_description,
         coupon_image,
         coupon_end,
+        url,
+        bank_name,
         userId: userId ? userId : null,
       },
     });
