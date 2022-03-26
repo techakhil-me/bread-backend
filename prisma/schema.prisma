@@ -57,6 +57,7 @@ model Coupon {
   coupon_end         DateTime
   url                String
   bank_name          String
+  type               String
 
   userId String?
   User   User?   @relation(fields: [userId], references: [id])

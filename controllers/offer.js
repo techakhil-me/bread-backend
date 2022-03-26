@@ -12,6 +12,7 @@ exports.addOffer = async (req, res) => {
     url,
     bank_name,
     userId,
+    type,
   } = req.body;
 
   coupon_end = new Date(coupon_end);
@@ -26,6 +27,7 @@ exports.addOffer = async (req, res) => {
         coupon_end,
         url,
         bank_name,
+        type,
         userId: userId ? userId : null,
       },
     });
