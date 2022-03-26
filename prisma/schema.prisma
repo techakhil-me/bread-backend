@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(cuid())
+  username String
+  email    String @unique
+  password String
+
+  Card   Card[]
+  Coupon Coupon[]
+
+  @@map("users")
+}
+
+model Card {
+  id            String @id @default(cuid())
+  bank_name     String
+  provider_name String
+  card_no       String
+  exp_date      String
+
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+
+  @@map("cards")
+}
+
+model Offer {
+  id                 String   @id @default(cuid())
+  coupon_code        String
+  coupon_offer       String
+  coupon_description String
+  coupon_image       String
+  coupon_end         DateTime
+  priority           Int
+
+  @@map("offers")
+}
+
+model Coupon {
+  id                 String   @id @default(cuid())
+  coupon_code        String
+  coupon_offer       String
+  coupon_description String
+  coupon_image       String
+  coupon_end         DateTime
+  url                String
+  bank_name          String
+
+  userId String?
+  User   User?   @relation(fields: [userId], references: [id])
+
+  @@map("coupons")
+}
