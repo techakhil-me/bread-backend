@@ -45,7 +45,7 @@ exports.getOffer = async (req, res) => {
       where: {
         userId: null,
         coupon_end: {
-          gt: new Date(),
+          gt: new Date('2021-04-26'),
         },
       },
     });
